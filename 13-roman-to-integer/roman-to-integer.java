@@ -9,25 +9,21 @@ class Solution {
         romanMap.put('D', 500);
         romanMap.put('M', 1000);
 
+        
+        char ch[] = s.toCharArray();
+           int i,j;
         int result = 0;
-        int n = s.length();
-
-        for (int i = 0; i < n; i++) {
-            int currentValue = romanMap.get(s.charAt(i));
-
-            if (i + 1 < n) {
-                int nextValue = romanMap.get(s.charAt(i + 1));
-                if ((s.charAt(i) == 'I' && (s.charAt(i + 1) == 'V' || s.charAt(i + 1) == 'X')) ||
-                    (s.charAt(i) == 'X' && (s.charAt(i + 1) == 'L' || s.charAt(i + 1) == 'C')) ||
-                    (s.charAt(i) == 'C' && (s.charAt(i + 1) == 'D' || s.charAt(i + 1) == 'M'))) {
-                    result -= currentValue;
-                } else {
-                    result += currentValue;
-                }
-            } else {
-                result += currentValue;
+        for(i=0,j=1;j<ch.length;i++,j++)
+        {
+            if(romanMap.get(ch[i])>=romanMap.get(ch[j]))
+            {
+                result=result+romanMap.get(ch[i]);
+            }
+            else
+            {
+                result=result-romanMap.get(ch[i]);
             }
         }
-        return result;
+        return result = result+romanMap.get(ch[i]);
     }
 }
